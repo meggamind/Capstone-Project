@@ -53,7 +53,10 @@ public class ExploreActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
                     if (dsp.child("location").getValue() != null) {
-                        mTitles.add(dsp.child("location").getValue().toString());
+                        String location = dsp.child("location").getValue().toString();
+                        if (!mTitles.contains(location)) {
+                            mTitles.add(location);
+                        }
                         mImageArray.add(dsp.child("photo").getValue().toString());
                     }
                 }

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,37 +37,29 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
     private static final String TAG = "NewPostActivity";
     private static final String REQUIRED = "Required";
     private static final String KEY_FILE_URI = "key_file_uri";
+    private static final int RC_TAKE_PICTURE = 101;
 
-    // [START declare_database_ref]
-    private DatabaseReference mDatabase;
-    // [END declare_database_ref]
 
-    private EditText mTitleField;
     private EditText mBodyField;
-    private EditText mLocationField;
-    private FloatingActionButton mSubmitButton;
-    private Button mUploadPhotoButton;
-    private Uri mFileUri = null;
-    private Uri mDownloadUrl = null;
     private FirebaseAuth mAuth;
+    private Uri mFileUri = null;
+    private EditText mTitleField;
+    private Uri mDownloadUrl = null;
+    private EditText mLocationField;
+    private Button mUploadPhotoButton;
+    private DatabaseReference mDatabase;
     private ProgressDialog mProgressDialog;
-
-
+    private FloatingActionButton mSubmitButton;
     private BroadcastReceiver mBroadcastReceiver;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
         mAuth = FirebaseAuth.getInstance();
-
-        // [START initialize_database_ref]
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        // [END initialize_database_ref]
-
-        mTitleField = findViewById(R.id.field_title);
         mBodyField = findViewById(R.id.field_body);
+        mTitleField = findViewById(R.id.field_title);
         mLocationField = findViewById(R.id.field_location);
         mSubmitButton = findViewById(R.id.fab_submit_post);
         mUploadPhotoButton = findViewById(R.id.button_camera);
@@ -78,18 +69,12 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
         // Restore instance state
         if (savedInstanceState != null) {
             mFileUri = savedInstanceState.getParcelable(KEY_FILE_URI);
-//            mDownloadUrl = savedInstanceState.getParcelable(KEY_DOWNLOAD_URL);
         }
-
-        Timber.d("Aniket4, BroadcastReceiver registering:");
-
         mBroadcastReceiver = new BroadcastReceiver() {
 
             @Override
             public void onReceive(Context context, Intent intent) {
-                Timber.d("Aniket4, onReceive:" + intent);
                 hideProgressDialog();
-
                 switch (intent.getAction()) {
                     case ImageUploadService.UPLOAD_COMPLETED:
                     case ImageUploadService.UPLOAD_ERROR:
@@ -99,7 +84,6 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
             }
         };
     }
-
 
     @Override
     public void onStart() {
@@ -150,7 +134,6 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
 
 
     private void uploadFromUri(Uri fileUri) {
-        Timber.d("uploadFromUri:src:" + fileUri.toString());
         mFileUri = fileUri;
         updateUI(mAuth.getCurrentUser());
         startService(new Intent(this, ImageUploadService.class)
@@ -165,11 +148,8 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
 
 
     private void submitPost() {
-
-
         final String title = mTitleField.getText().toString();
         final String body = mBodyField.getText().toString();
-
         final String location = mLocationField.getText().toString();
 
         // Title is required
@@ -205,17 +185,15 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Get user value
                         User user = dataSnapshot.getValue(User.class);
-
                         if (user == null) {
                             // User is null, error out
-                            Log.e(TAG, "User " + userId + " is unexpectedly null");
+                            Timber.e("User " + userId + " is unexpectedly null");
                             Toast.makeText(NewPostActivity.this,
                                     "Error: could not fetch user.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             writeNewPost(userId, user.username, title, body, photo, location);
                         }
-
                         setEditingEnabled(true);
                         finish();
                         Intent intent = new Intent(NewPostActivity.this, ExploreActivity.class);
@@ -240,27 +218,19 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    // [START write_fan_out]
     private void writeNewPost(String userId, String username, String title, String body, String photo, String location) {
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
         String key = mDatabase.child("posts").push().getKey();
         Post post = new Post(userId, username, title, body, photo, location);
         Map<String, Object> postValues = post.toMap();
-
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/posts/" + key, postValues);
         childUpdates.put("/user-posts/" + userId + "/" + key, postValues);
-
-        childUpdates.put("/location-posts/" + location, postValues);
-
+        childUpdates.put("/location-posts/" + location + "/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
     }
 
     @Override
     public void onClick(View v) {
-
-        System.out.println("Aniket4, here in onclick");
         int i = v.getId();
         if (i == R.id.button_camera) {
             launchCamera();
@@ -269,16 +239,9 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    private static final int RC_TAKE_PICTURE = 101;
-
     private void launchCamera() {
-        Timber.d("launchCamera");
-
-        // Pick an image from storage
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, RC_TAKE_PICTURE);
     }
-
-
 }

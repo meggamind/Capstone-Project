@@ -3,11 +3,9 @@ package com.example.aniket.capstone_project.ui.drawer;
 import android.app.ProgressDialog;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 import com.example.aniket.capstone_project.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,10 +19,6 @@ public class BaseActivity extends AppCompatActivity {
     @Nullable
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-//    @Nullable
-//    @BindView(R.id.ivLogo)
-//    ImageView ivLogo;
 
     private MenuItem inboxMenuItem;
 
@@ -65,11 +59,6 @@ public class BaseActivity extends AppCompatActivity {
     public MenuItem getInboxMenuItem() {
         return inboxMenuItem;
     }
-
-//    public ImageView getIvLogo() {
-//        return ivLogo;
-//    }
-
 
     private ProgressDialog mProgressDialog;
 

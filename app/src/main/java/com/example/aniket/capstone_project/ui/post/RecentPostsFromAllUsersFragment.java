@@ -46,10 +46,8 @@ public class RecentPostsFromAllUsersFragment extends PostListFragment {
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
-//        Query recentPostsQuery = databaseReference.child("posts").limitToFirst(100);
         Query recentPostsQuery = databaseReference.child("location-posts")
-                .orderByChild("location").equalTo(mTitle);
-
+                .child(mTitle);
 
         return recentPostsQuery;
     }
