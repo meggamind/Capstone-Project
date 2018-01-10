@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.aniket.capstone_project">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity
+            android:name="com.auth0.android.lock.LockActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme" />
+        <activity android:name=".ui.explore.ExploreActivity" />
+        <activity
+            android:name=".ui.explore.thingstodo.ThingsToDoActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.Sliding.Light" />
+        <activity android:name=".ui.upload.UploadActivity" />
+        <activity android:name=".ui.userprofile.UserProfileActivity" />
+        <activity android:name=".ui.drawer.BaseDrawerActivity" />
+        <activity android:name=".ui.drawer.BaseActivity" />
+        <activity android:name=".ui.login.SignInActivity" />
+        <activity android:name=".ui.post.NewPostActivity" />
+
+
+        <service
+            android:name=".ui.post.ImageUploadService"
+            android:exported="false" />
+    </application>
+
+</manifest>

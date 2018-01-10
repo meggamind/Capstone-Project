@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "955951968386",
+    "firebase_url": "https://travellog-564ed.firebaseio.com",
+    "project_id": "travellog-564ed",
+    "storage_bucket": "travellog-564ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955951968386:android:b4f1fe6f9224148c",
+        "android_client_info": {
+          "package_name": "com.example.aniket.capstone_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955951968386-1hlj3f175hmh588rl8e1jggftochite8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aniket.capstone_project",
+            "certificate_hash": "f4089ec8866021ea3090e36960d9a2bde2d9f182"
+          }
+        },
+        {
+          "client_id": "955951968386-g3b5pm74j9da4r706dnum6uo63mggps5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU8xxQomH7iCHJDdRGz4R3fwskdy3dEHI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955951968386-g3b5pm74j9da4r706dnum6uo63mggps5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
