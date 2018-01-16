@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <item
         android:id="@+id/action_explore"
         android:enabled="true"
         android:icon="@drawable/ic_explore_white_24dp"
-        android:title="Explore"
+        android:title="@string/bottom_navigation_explore"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_upload"
         android:enabled="true"
         android:icon="@drawable/ic_up_arrow"
-        android:title="Upload"
+        android:title="@string/bottom_navigation_upload"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_profile"
         android:enabled="true"
         android:icon="@drawable/ic_user"
-        android:title="Profile"
+        android:title="@string/bottom_navigation_profile"
         app:showAsAction="ifRoom" />
 </menu>

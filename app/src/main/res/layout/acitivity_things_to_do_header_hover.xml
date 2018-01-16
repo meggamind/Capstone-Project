@@ -10,30 +10,11 @@
         android:gravity="center"
         android:layout_height="match_parent">
         <ImageView
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@string/header_star_description"
             android:id="@+id/heart"
-            android:src="@drawable/heart_selector"
+            android:src="@drawable/ic_toggle_star_outline_24"
             android:layout_width="25dp"
             android:layout_height="25dp" />
-        <ImageView
-            android:id="@+id/share"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/share"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
-        <ImageView
-            android:id="@+id/more"
-            android:src="@drawable/more"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
     </LinearLayout>
-    <!--<TextView-->
-        <!--android:id="@+id/description"-->
-        <!--android:text="Parse PHP SDK"-->
-        <!--android:layout_marginLeft="12dp"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:layout_marginBottom="12dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
 </RelativeLayout>

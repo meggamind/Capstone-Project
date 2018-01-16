@@ -17,13 +17,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity
-            android:name="com.auth0.android.lock.LockActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyTheme" />
         <activity android:name=".ui.explore.ExploreActivity" />
         <activity
             android:name=".ui.explore.thingstodo.ThingsToDoActivity"
@@ -37,10 +30,28 @@
         <activity android:name=".ui.login.SignInActivity" />
         <activity android:name=".ui.post.NewPostActivity" />
 
-
         <service
             android:name=".ui.post.ImageUploadService"
             android:exported="false" />
+
+        <service android:name=".widgets.UpdatePostService" />
+
+        <service
+            android:name=".widgets.GridWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver android:name=".widgets.CapstoneWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE2" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/capstone_app_info" />
+        </receiver>
+
+
     </application>
 
 </manifest>

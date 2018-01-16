@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -19,7 +17,6 @@ import android.widget.TextView;
 
 import com.example.aniket.capstone_project.R;
 import com.example.aniket.capstone_project.data.Post;
-import com.example.aniket.capstone_project.data.User;
 import com.example.aniket.capstone_project.data.explore.ThingsToDoConstants;
 import com.example.aniket.capstone_project.ui.RevealBackgroundView;
 import com.example.aniket.capstone_project.ui.drawer.BaseDrawerActivity;
@@ -35,7 +32,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.squareup.picasso.Picasso;
 
@@ -50,17 +46,12 @@ public class UserProfileActivity extends BaseDrawerActivity implements RevealBac
 
     @BindView(R.id.vRevealBackground)
     RevealBackgroundView vRevealBackground;
-//    @BindView(R.id.rvUserProfile)
-//    RecyclerView rvUserProfile;
 
     @BindView(R.id.tlUserProfileTabs)
     TabLayout tlUserProfileTabs;
 
     @BindView(R.id.user_name)
     TextView userNameTextView;
-
-//    @BindView(R.id.user_post_count)
-//    TextView userPostCountTextView;
 
     @BindView(R.id.ivUserProfilePhoto)
     ImageView ivUserProfilePhoto;
@@ -112,8 +103,7 @@ public class UserProfileActivity extends BaseDrawerActivity implements RevealBac
         setupTabs();
         setupRevealBackground(savedInstanceState);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -129,10 +119,8 @@ public class UserProfileActivity extends BaseDrawerActivity implements RevealBac
                             case R.id.action_profile:
                                 Intent profileIntent = new Intent(UserProfileActivity.this, UserProfileActivity.class);
                                 int[] startingLocation = new int[2];
-//                                view.getLocationOnScreen(startingLocation);
                                 startingLocation[0] += ScreenUI.getScreenWidth(getApplicationContext()) / 2;
                                 profileIntent.putExtra(ThingsToDoConstants.ARG_REVEAL_START_LOCATION, startingLocation);
-
                                 startActivity(profileIntent);
                         }
                         return true;
@@ -147,10 +135,6 @@ public class UserProfileActivity extends BaseDrawerActivity implements RevealBac
                 startActivity(signInActivityIntent);
             }
         });
-
-
-
-
 
         mUser = mAuth.getCurrentUser();
         userNameTextView.setText(mUser.getEmail());
@@ -177,16 +161,10 @@ public class UserProfileActivity extends BaseDrawerActivity implements RevealBac
 
             }
         });
-//        Timber.d("Aniket4, userPostRef: " + userPostRef.child());
-
-//        userPostCountTextView.setText(mUser.);
     }
 
     private void setupTabs() {
         tlUserProfileTabs.addTab(tlUserProfileTabs.newTab().setIcon(R.drawable.ic_grid_on_white));
-//        tlUserProfileTabs.addTab(tlUserProfileTabs.newTab().setIcon(R.drawable.ic_list_white));
-//        tlUserProfileTabs.addTab(tlUserProfileTabs.newTab().setIcon(R.drawable.ic_place_white));
-//        tlUserProfileTabs.addTab(tlUserProfileTabs.newTab().setIcon(R.drawable.ic_label_white));
     }
 
 
@@ -211,16 +189,13 @@ public class UserProfileActivity extends BaseDrawerActivity implements RevealBac
     @Override
     public void onStateChange(int state) {
         if (RevealBackgroundView.STATE_FINISHED == state) {
-//            rvUserProfile.setVisibility(View.VISIBLE);
             tlUserProfileTabs.setVisibility(View.VISIBLE);
             vUserProfileRoot.setVisibility(View.VISIBLE);
             userPhotosAdapter = new UserProfileAdapter(this);
-//            rvUserProfile.setAdapter(userPhotosAdapter);
             animateUserProfileOptions();
             animateUserProfileHeader();
         } else {
             tlUserProfileTabs.setVisibility(View.INVISIBLE);
-//            rvUserProfile.setVisibility(View.INVISIBLE);
             vUserProfileRoot.setVisibility(View.INVISIBLE);
         }
     }

@@ -19,14 +19,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--suppress AndroidLintContentDescription -->
-        <!--<com.example.aniket.capstone_project.ui.DynamicHeightNetworkImageView-->
-        <!--android:id="@+id/thing_to_do_image"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:background="@color/photo_placeholder" />-->
-
         <ImageView
+            android:contentDescription="@string/city_photo_description"
             android:id="@+id/thing_to_do_image"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -57,7 +51,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:paddingTop="16dp"
-                android:text="someTitle"
+                android:text="@string/things_to_do_title"
                 android:textColor="@color/text_color" />
 
             <LinearLayout
@@ -76,7 +70,7 @@
                     android:paddingBottom="16dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="location"
+                    android:text="@string/things_to_do_location"
                     android:textColor="#6000" />
 
                 <include
@@ -84,7 +78,6 @@
                     layout="@layout/include_post_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_marginStart="0dp"
                     android:layout_weight="5"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -94,9 +87,6 @@
                     android:id="@+id/star_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/post_author_layout"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/post_author_layout"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="@+id/post_author_layout"
@@ -105,9 +95,10 @@
 
                     <ImageView
                         android:id="@+id/star"
+                        android:contentDescription="@string/header_star_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="0dp"
+                        android:layout_marginEnd="0dp"
                         android:background="?attr/selectableItemBackground"
                         android:src="@drawable/ic_toggle_star_outline_24" />
 

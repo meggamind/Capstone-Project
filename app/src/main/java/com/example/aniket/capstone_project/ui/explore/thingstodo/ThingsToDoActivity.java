@@ -32,7 +32,6 @@ public class ThingsToDoActivity extends SlidingActivity {
         setHeaderContent(R.layout.activity_things_to_do_header);
         BlurLayout sampleLayout = findViewById(R.id.things_to_do_header);
 
-
         View hover = LayoutInflater.from(getApplicationContext()).inflate(R.layout.acitivity_things_to_do_header_hover, null);
         ImageView heart = hover.findViewById(R.id.heart);
         heart.setOnClickListener(new View.OnClickListener() {
@@ -48,24 +47,10 @@ public class ThingsToDoActivity extends SlidingActivity {
                 }
             }
         });
-
-
-        hover.findViewById(R.id.share).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                YoYo.with(Techniques.Swing)
-                        .duration(350)
-                        .playOn(v);
-            }
-        });
         sampleLayout.setHoverView(hover);
         sampleLayout.setBlurDuration(250);
         sampleLayout.addChildAppearAnimator(hover, R.id.heart, Techniques.FlipInX, 550, 0);
-        sampleLayout.addChildAppearAnimator(hover, R.id.share, Techniques.FlipInX, 550, 250);
-        sampleLayout.addChildAppearAnimator(hover, R.id.more, Techniques.FlipInX, 550, 500);
         sampleLayout.addChildDisappearAnimator(hover, R.id.heart, Techniques.FlipOutX, 550, 500);
-        sampleLayout.addChildDisappearAnimator(hover, R.id.share, Techniques.FlipOutX, 550, 250);
-        sampleLayout.addChildDisappearAnimator(hover, R.id.more, Techniques.FlipOutX, 550, 0);
 
         Intent intent = getIntent();
         Post post = intent.getExtras().getParcelable("mDatas");

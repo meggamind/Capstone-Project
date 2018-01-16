@@ -118,7 +118,7 @@ public class RevealBackgroundView extends View {
         invalidate();
     }
 
-    public static interface OnStateChangeListener {
+    public interface OnStateChangeListener {
         void onStateChange(int state);
     }
 }

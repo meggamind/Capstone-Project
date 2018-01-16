@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/btn_context_menu"
+    android:focusable="true"
     android:clickable="true">
 
     <LinearLayout
@@ -12,28 +13,20 @@
 
         <ImageView
             android:id="@+id/ivMenuUserProfilePhoto"
+            android:contentDescription="@string/author_image_description"
             android:layout_width="@dimen/global_menu_avatar_size"
             android:layout_height="@dimen/global_menu_avatar_size"
             android:layout_margin="12dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="froger_mcs"
+            android:text="@string/menu_header_name"
             android:textColor="@color/style_color_primary"
             android:textSize="16sp"
             android:textStyle="bold" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="16dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_global_menu_search" />
-
     </LinearLayout>
 
     <View

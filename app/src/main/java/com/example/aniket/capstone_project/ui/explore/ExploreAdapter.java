@@ -32,13 +32,11 @@ public class ExploreAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Timber.d("Aniket5, position: " + position );
         return mTitles.get(position);
     }
 
     @Override
     public int getCount() {
-
         return mFragments.size();
     }
 }

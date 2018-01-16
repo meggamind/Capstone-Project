@@ -13,7 +13,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:hint="Title"
+        android:hint="@string/new_post_title"
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_below="@+id/field_title"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:hint="Write your post..."
+        android:hint="@string/new_field_text"
         android:inputType="textMultiLine"
         android:maxLines="10"
         android:scrollHorizontally="false"
@@ -35,16 +35,14 @@
         app:layout_constraintTop_toBottomOf="@+id/field_title" />
 
     <EditText
-
         android:id="@+id/field_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:hint="Set Location"
+        android:hint="@string/location_hint"
         android:inputType="textMultiLine"
         android:maxLines="10"
         android:scrollHorizontally="false"
@@ -62,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="304dp"
         android:layout_marginStart="16dp"
-        android:text="Upload A Photo"
+        android:text="@string/new_post_upload_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -71,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"

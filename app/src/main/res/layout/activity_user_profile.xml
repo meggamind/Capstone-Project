@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -16,19 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
-        <!--<fragment-->
-        <!--android:id="@+id/posts"-->
-        <!--layout="@layout/fragment_all_posts"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
-
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/rvUserProfile"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -67,11 +53,12 @@
                             android:id="@+id/ivUserProfilePhoto"
                             android:layout_width="@dimen/user_profile_avatar_size"
                             android:layout_height="@dimen/user_profile_avatar_size"
-                            android:layout_marginRight="16dp" />
+                            android:layout_marginEnd="16dp"
+                            android:contentDescription="@string/author_image_description" />
 
                         <LinearLayout
                             android:id="@+id/vUserDetails"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
@@ -80,35 +67,9 @@
                                 android:id="@+id/user_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="John Smith"
+                                android:text="@string/user_profile_name"
                                 android:textColor="#ffffff"
                                 android:textSize="24sp" />
-
-                            <!--<TextView-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="\@jsmith"-->
-                            <!--android:textColor="#bbbbbb"-->
-                            <!--android:textSize="12sp" />-->
-
-                            <!--<TextView-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="Mobile development passionate."-->
-                            <!--android:textColor="#ffffff"-->
-                            <!--android:textSize="12sp" />-->
-
-                            <!--<Button-->
-                            <!--android:id="@+id/btnFollow"-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="24dp"-->
-                            <!--android:layout_marginRight="24dp"-->
-                            <!--android:layout_marginTop="8dp"-->
-                            <!--android:background="@drawable/btn_following"-->
-                            <!--android:text="following"-->
-                            <!--android:textColor="#ffffff"-->
-                            <!--android:textSize="12sp" />-->
-
                         </LinearLayout>
                     </LinearLayout>
 
@@ -118,97 +79,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_marginTop="16dp">
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_weight="1"-->
-                            <!--android:gravity="center"-->
-                            <!--android:orientation="vertical">-->
-
-                            <!--<TextView-->
-                                <!--android:id="@+id/user_post_count"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="1167"-->
-                                <!--android:textColor="#ffffff"-->
-                                <!--android:textSize="20sp" />-->
-
-                            <!--<TextView-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:text="posts"-->
-                                <!--android:textColor="#ffffff"-->
-                                <!--android:textSize="12sp" />-->
-                        <!--</LinearLayout>-->
-
-                        <!--<LinearLayout-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center"-->
-                        <!--android:orientation="vertical">-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="396"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--android:textSize="20sp" />-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="followers"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--android:textSize="12sp" />-->
-                        <!--</LinearLayout>-->
-
-                        <!--<LinearLayout-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center"-->
-                        <!--android:orientation="vertical">-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="485"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--android:textSize="20sp" />-->
-
-                        <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="following"-->
-                        <!--android:textColor="#ffffff"-->
-                        <!--android:textSize="12sp" />-->
-                        <!--</LinearLayout>-->
-                    </LinearLayout>
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical"></LinearLayout>
 
                     <Button
                         android:id="@+id/b_profile_logout"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="250dp"
-                        android:text="Logout" />
+                        android:text="@string/user_profile_logout" />
 
                 </LinearLayout>
-
-                <!--<android.support.v7.widget.Toolbar-->
-                <!--android:id="@+id/toolbar"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="?attr/actionBarSize"-->
-                <!--android:background="?attr/colorPrimary"-->
-                <!--app:elevation="@dimen/default_elevation"-->
-                <!--app:layout_collapseMode="pin"-->
-                <!--app:layout_scrollFlags="scroll|enterAlways"-->
-                <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
-                <!---->
-                <!--</android.support.v7.widget.Toolbar>-->
-
             </android.support.design.widget.CollapsingToolbarLayout>
 
             <FrameLayout
@@ -242,19 +123,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-        <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/btnCreate"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_gravity="bottom|right"-->
-        <!--android:layout_marginBottom="@dimen/btn_fab_margins"-->
-        <!--android:layout_marginRight="@dimen/btn_fab_margins"-->
-        <!--android:src="@drawable/ic_instagram_white"-->
-        <!--app:borderWidth="0dp"-->
-        <!--app:elevation="6dp"-->
-        <!--app:pressedTranslationZ="12dp" />-->
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
@@ -268,7 +136,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_navigation_main" />
     </android.support.constraint.ConstraintLayout>
-
-
-
 </RelativeLayout>

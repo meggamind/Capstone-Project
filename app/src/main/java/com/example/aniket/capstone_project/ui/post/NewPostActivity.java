@@ -110,7 +110,6 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
     private void onUploadResultIntent(Intent intent) {
         mDownloadUrl = intent.getParcelableExtra(ImageUploadService.EXTRA_DOWNLOAD_URL);
         mFileUri = intent.getParcelableExtra(ImageUploadService.EXTRA_FILE_URI);
-
         updateUI(mAuth.getCurrentUser());
     }
 

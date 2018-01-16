@@ -17,6 +17,7 @@ import com.example.aniket.capstone_project.ui.post.NewPostActivity;
 import com.example.aniket.capstone_project.ui.post.RecentPostsFromAllUsersFragment;
 import com.example.aniket.capstone_project.ui.userprofile.UserProfileActivity;
 import com.example.aniket.capstone_project.utils.view.ScreenUI;
+import com.example.aniket.capstone_project.widgets.UpdatePostService;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,12 +39,12 @@ public class ExploreActivity extends AppCompatActivity {
     private List<String> mImageArray;
     private CoordinatorTabLayout mCoordinatorTabLayout;
     private List<String> mTitles;
-
+    private static final String SELECTED_TABS = "selected_tab";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         mTitles = new LinkedList<>();
-        mImageArray = new LinkedList<>();
+        mImageArray = new ArrayList<>();
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference userPostRef = mDatabase.child("posts");
@@ -60,7 +61,12 @@ public class ExploreActivity extends AppCompatActivity {
                         mImageArray.add(dsp.child("photo").getValue().toString());
                     }
                 }
-                init();
+                UpdatePostService.startPostWidgetService(getApplicationContext(), mImageArray);
+                if (savedInstanceState != null) {
+                    init(savedInstanceState.getInt(SELECTED_TABS, 0));
+                } else {
+                    init(0);
+                }
             }
 
             @Override
@@ -72,7 +78,7 @@ public class ExploreActivity extends AppCompatActivity {
     }
 
 
-    private void init() {
+    private void init(int position) {
         setContentView(R.layout.activity_explore);
 
         initFragments();
@@ -88,6 +94,7 @@ public class ExploreActivity extends AppCompatActivity {
                 })
                 .setupWithViewPager(mViewPager);
 
+        mCoordinatorTabLayout.getTabLayout().setTabMode(TabLayout.MODE_SCROLLABLE);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
@@ -114,6 +121,9 @@ public class ExploreActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+        mCoordinatorTabLayout.getTabLayout()
+                .getTabAt(position)
+                .select();
     }
 
 
@@ -133,6 +143,13 @@ public class ExploreActivity extends AppCompatActivity {
         mViewPager = findViewById(R.id.vp);
         mViewPager.setOffscreenPageLimit(6);
         mViewPager.setAdapter(new ExploreAdapter(getSupportFragmentManager(), mFragments, mTitles));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle saved) {
+        super.onSaveInstanceState(saved);
+        saved.putInt(SELECTED_TABS,
+                mCoordinatorTabLayout.getTabLayout().getSelectedTabPosition());
     }
 
 }

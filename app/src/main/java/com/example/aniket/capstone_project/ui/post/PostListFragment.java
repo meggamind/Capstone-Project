@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.example.aniket.capstone_project.R;
 import com.example.aniket.capstone_project.data.Post;
-import com.example.aniket.capstone_project.data.explore.ThingsToDoConstants;
 import com.example.aniket.capstone_project.ui.explore.thingstodo.ThingsToDoActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -30,11 +29,8 @@ import com.google.firebase.database.Transaction;
  */
 
 public abstract class PostListFragment extends Fragment {
-
     private static final String TAG = "PostListFragment";
-
     private DatabaseReference mDatabase;
-
     private FirebaseRecyclerAdapter<Post, PostViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
@@ -166,7 +162,6 @@ public abstract class PostListFragment extends Fragment {
             mAdapter.stopListening();
         }
     }
-
 
     public String getUid() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
