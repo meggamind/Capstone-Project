@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.daimajia.slider.library.SliderLayout;
 import com.example.aniket.capstone_project.R;
 import com.example.aniket.capstone_project.ui.post.PostListFragment;
 
@@ -25,16 +24,9 @@ public class CapstoneWidgetProvider extends AppWidgetProvider {
 
     static void updateAppWidget(final Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-        SliderLayout mDemoSlider;
 
-//        CharSequence widgetText = context.getString(R.string.appwidget_text);
 //        // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_grid_view);
-        RemoteViews views1 = new RemoteViews(context.getPackageName(), R.id.slider);
-//        views.s
-//        mDemoSlider = (SliderLayout)views.findViewById(R.id.slider);
-
-        //        views.setTextViewText(R.id.appwidget_text, widgetText);
         Intent appIntent = new Intent(context, PostListFragment.class);
         appIntent.addCategory(Intent.ACTION_MAIN);
         appIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -45,17 +37,6 @@ public class CapstoneWidgetProvider extends AppWidgetProvider {
                 appIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT
         );
-
-
-        HashMap<String, String> url_maps = new HashMap<String, String>();
-        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
-        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
-
-        HashMap<String, Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Hannibal", R.drawable.image1);
-        file_maps.put("Big Bang Theory", R.drawable.image2);
 
         views.setPendingIntentTemplate(R.id.widget_grid_view, appPendingIntent);
 
