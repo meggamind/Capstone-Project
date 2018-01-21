@@ -83,7 +83,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign In Failed",
+                            Toast.makeText(SignInActivity.this, getString(R.string.sign_in_error),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -110,7 +110,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign Up Failed",
+                            Toast.makeText(SignInActivity.this, getString(R.string.sign_up_error),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

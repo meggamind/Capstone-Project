@@ -126,7 +126,7 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
                     Timber.w("File URI is null");
                 }
             } else {
-                Toast.makeText(this, "Taking picture failed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.picture_failure), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -175,7 +175,7 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
 
         // Disable button so there are no multi-posts
         setEditingEnabled(false);
-        Toast.makeText(this, "Posting...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.post_in_progress), Toast.LENGTH_SHORT).show();
 
         final String userId = getUid();
         mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
@@ -188,7 +188,7 @@ public class NewPostActivity extends BaseActivity implements View.OnClickListene
                             // User is null, error out
                             Timber.e("User " + userId + " is unexpectedly null");
                             Toast.makeText(NewPostActivity.this,
-                                    "Error: could not fetch user.",
+                                    getString(R.string.user_fetch_error),
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             writeNewPost(userId, user.username, title, body, photo, location);

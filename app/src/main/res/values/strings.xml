@@ -51,7 +51,7 @@
     <string name="bottom_navigation_upload">Upload</string>
     <string name="bottom_navigation_profile">Profile</string>
 
-    <string name="things_to_do_title">someTitle</string>
+    <string name="things_to_do_title">Activity Title</string>
     <string name="things_to_do_location">location</string>
 
     <string name="menu_header_name">temp header</string>
@@ -61,5 +61,10 @@
     <string name="widget_image">Widget grid image</string>
     <string name="floating_action_button">New post submit button</string>
     <string name="lorem">lorem</string>
-    lorem
+    <string name="picture_failure">Taking picture failed.</string>
+    <string name="post_in_progress">Posting...</string>
+    <string name="user_fetch_error">Error: could not fetch user.</string>
+    <string name="sign_in_error">Sign In Failed</string>
+    <string name="sign_up_error">Sign Up Failed</string>
+    <string name="progress_loading">Loading...</string>
 </resources>

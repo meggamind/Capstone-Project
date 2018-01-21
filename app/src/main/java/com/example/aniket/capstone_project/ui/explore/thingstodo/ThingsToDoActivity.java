@@ -21,7 +21,7 @@ public class ThingsToDoActivity extends SlidingActivity {
 
     @Override
     public void init(Bundle savedInstanceState) {
-        setTitle("Activity Title");
+        setTitle(getString(R.string.things_to_do_title));
 
         setPrimaryColors(
                 getResources().getColor(R.color.colorPrimary),
