@@ -12,7 +12,6 @@ import com.example.aniket.capstone_project.R;
 import com.example.aniket.capstone_project.ui.post.PostListFragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Implementation of App Widget functionality.

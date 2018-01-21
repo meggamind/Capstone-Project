@@ -22,7 +22,6 @@ public class ExploreAdapter extends FragmentPagerAdapter {
         super(fm);
         mFragments = fragments;
         mTitles = titles;
-        Timber.d("Aniket5, mTitles: " + mTitles );
     }
 
     @Override

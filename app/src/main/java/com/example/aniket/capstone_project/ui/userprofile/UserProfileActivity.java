@@ -23,6 +23,7 @@ import com.example.aniket.capstone_project.ui.drawer.BaseDrawerActivity;
 import com.example.aniket.capstone_project.ui.explore.ExploreActivity;
 import com.example.aniket.capstone_project.ui.login.SignInActivity;
 import com.example.aniket.capstone_project.ui.post.MyPostsFragment;
+import com.example.aniket.capstone_project.ui.post.NewPostActivity;
 import com.example.aniket.capstone_project.utils.animation.CircleTransformation;
 import com.example.aniket.capstone_project.utils.view.ScreenUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -115,13 +116,16 @@ public class UserProfileActivity extends BaseDrawerActivity implements RevealBac
                                 startActivity(exploreIntent);
                                 break;
                             case R.id.action_upload:
-
+                                Intent newPostIntent = new Intent(UserProfileActivity.this, NewPostActivity.class);
+                                startActivity(newPostIntent);
+                                break;
                             case R.id.action_profile:
                                 Intent profileIntent = new Intent(UserProfileActivity.this, UserProfileActivity.class);
                                 int[] startingLocation = new int[2];
                                 startingLocation[0] += ScreenUI.getScreenWidth(getApplicationContext()) / 2;
                                 profileIntent.putExtra(ThingsToDoConstants.ARG_REVEAL_START_LOCATION, startingLocation);
                                 startActivity(profileIntent);
+                                break;
                         }
                         return true;
                     }

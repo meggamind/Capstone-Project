@@ -31,9 +31,9 @@ import java.util.List;
 
 import cn.hugeterry.coordinatortablayout.CoordinatorTabLayout;
 import cn.hugeterry.coordinatortablayout.listener.LoadHeaderImagesListener;
+import timber.log.Timber;
 
 public class ExploreActivity extends AppCompatActivity {
-
     private ViewPager mViewPager;
     private ArrayList<Fragment> mFragments;
     private List<String> mImageArray;
@@ -43,6 +43,8 @@ public class ExploreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_explore);
         mTitles = new LinkedList<>();
         mImageArray = new ArrayList<>();
 
@@ -73,13 +75,10 @@ public class ExploreActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        super.onCreate(savedInstanceState);
     }
 
 
     private void init(int position) {
-        setContentView(R.layout.activity_explore);
 
         initFragments();
         initViewPager();
@@ -152,4 +151,10 @@ public class ExploreActivity extends AppCompatActivity {
                 mCoordinatorTabLayout.getTabLayout().getSelectedTabPosition());
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Timber.d("onDestroy");
+        mViewPager = null;
+    }
 }

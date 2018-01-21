@@ -1,28 +1,20 @@
 package com.example.aniket.capstone_project.ui.post;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aniket.capstone_project.R;
 import com.example.aniket.capstone_project.data.Post;
-import com.example.aniket.capstone_project.ui.explore.thingstodo.ThingsToDoActivity;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.Transaction;
 
 /**
  * Created by aniket on 1/7/18.
@@ -31,7 +23,7 @@ import com.google.firebase.database.Transaction;
 public abstract class PostListFragment extends Fragment {
     private static final String TAG = "PostListFragment";
     private DatabaseReference mDatabase;
-    private FirebaseRecyclerAdapter<Post, PostViewHolder> mAdapter;
+    private PostRecyclerAdapter mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
@@ -65,87 +57,9 @@ public abstract class PostListFragment extends Fragment {
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Post>()
                 .setQuery(postsQuery, Post.class)
                 .build();
-
-        mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(options) {
-
-            @Override
-            public PostViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new PostViewHolder(inflater.inflate(R.layout.things_to_do_city2, viewGroup, false));
-            }
-
-            @Override
-            protected void onBindViewHolder(PostViewHolder viewHolder, int position, final Post model) {
-                final DatabaseReference postRef = getRef(position);
-
-                final String postKey = postRef.getKey();
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ThingsToDoActivity.class);
-                        intent.putExtra("mDatas", model);
-                        startActivity(intent);
-                    }
-                });
-
-                // Determine if the current user has liked this post and set UI accordingly
-                if (model.stars.containsKey(getUid())) {
-                    viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_24);
-                } else {
-                    viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_outline_24);
-                }
-
-                viewHolder.bindToPost(model, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View starView) {
-                        DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
-                        DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
-                        DatabaseReference locationPostRef = mDatabase.child("location-posts").child(model.location).child(postRef.getKey());
-                        onStarClicked(locationPostRef);
-                        onStarClicked(globalPostRef);
-                        onStarClicked(userPostRef);
-                    }
-                });
-            }
-        };
+        mAdapter = new PostRecyclerAdapter(options, getContext());
         mRecycler.setAdapter(mAdapter);
     }
-
-
-    private void onStarClicked(DatabaseReference postRef) {
-        postRef.runTransaction(new Transaction.Handler() {
-            @Override
-            public Transaction.Result doTransaction(MutableData mutableData) {
-                Post p = mutableData.getValue(Post.class);
-                if (p == null) {
-                    return Transaction.success(mutableData);
-                }
-
-                if (p.stars.containsKey(getUid())) {
-                    // Unstar the post and remove self from stars
-                    p.starCount = p.starCount - 1;
-                    p.stars.remove(getUid());
-                } else {
-                    // Star the post and add self to stars
-                    p.starCount = p.starCount + 1;
-                    p.stars.put(getUid(), true);
-                }
-
-                // Set value and report transaction success
-                mutableData.setValue(p);
-                return Transaction.success(mutableData);
-            }
-
-            @Override
-            public void onComplete(DatabaseError databaseError, boolean b,
-                                   DataSnapshot dataSnapshot) {
-                // Transaction completed
-                Log.d(TAG, "postTransaction:onComplete:" + databaseError);
-            }
-        });
-    }
-    // [END post_stars_transaction]
-
 
     @Override
     public void onStart() {

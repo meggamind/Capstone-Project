@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <ImageView
+        android:contentDescription="@string/widget_image"
         android:id="@+id/widget_grid_view_item1"
         android:layout_width="match_parent"
         android:layout_height="100dp"

@@ -58,4 +58,8 @@
     <string name="appwidget_text">VARIOUS POSTS WILL APPEAR HERE AFTER LAUNCHING &quot;CAPSTONE
         APP&quot;</string>
     <string name="add_widget">Add widget</string>
+    <string name="widget_image">Widget grid image</string>
+    <string name="floating_action_button">New post submit button</string>
+    <string name="lorem">lorem</string>
+    lorem
 </resources>
